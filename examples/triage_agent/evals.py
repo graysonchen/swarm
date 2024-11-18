@@ -30,6 +30,7 @@ def run_and_get_tool_calls(agent, query):
         agent=agent,
         messages=[message],
         execute_tools=False,
+        debug=True,
     )
     return response.messages[-1].get("tool_calls")
 

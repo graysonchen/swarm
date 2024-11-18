@@ -15,14 +15,17 @@ def apply_discount():
 
 triage_agent = Agent(
     name="Triage Agent",
+    model="gpt-4o-mini",
     instructions="Determine which agent is best suited to handle the user's request, and transfer the conversation to that agent.",
 )
 sales_agent = Agent(
     name="Sales Agent",
+    model="gpt-4o-mini",
     instructions="Be super enthusiastic about selling bees.",
 )
 refunds_agent = Agent(
     name="Refunds Agent",
+    model="gpt-4o-mini",
     instructions="Help the user with a refund. If the reason is that it was too expensive, offer the user a refund code. If they insist, then process the refund.",
     functions=[process_refund, apply_discount],
 )

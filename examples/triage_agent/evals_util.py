@@ -13,7 +13,8 @@ class BoolEvalResult(BaseModel):
 
 def evaluate_with_llm_bool(instruction, data) -> BoolEvalResult:
     eval_result, _ = __client.chat.completions.create_with_completion(
-        model="gpt-4o",
+        # model="gpt-4o",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": instruction},
             {"role": "user", "content": data},
