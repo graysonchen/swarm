@@ -62,6 +62,7 @@ class Swarm:
             "tool_choice": agent.tool_choice,
             "stream": stream,
         }
+        debug_print(debug, "create_params for...:", create_params)
 
         if tools:
             create_params["parallel_tool_calls"] = agent.parallel_tool_calls
@@ -180,12 +181,22 @@ class Swarm:
             yield {"delim": "start"}
             for chunk in completion:
                 delta = json.loads(chunk.choices[0].delta.json())
+
+                debug_print(debug, "chunk----------------", chunk)
+                debug_print(debug, "delta----------------", delta)
+
                 if delta["role"] == "assistant":
                     delta["sender"] = active_agent.name
                 yield delta
                 delta.pop("role", None)
                 delta.pop("sender", None)
                 merge_chunk(message, delta)
+
+                debug_print(debug, "merge_chunk----------------", '')
+                debug_print(debug, "merge_chunk(message, delta) message:", message)
+                debug_print(debug, "merge_chunk(message, delta) delta:", delta)
+                debug_print(debug, "merge_chunk----------------", '')
+
             yield {"delim": "end"}
 
             message["tool_calls"] = list(

@@ -5,11 +5,13 @@ client = Swarm()
 english_agent = Agent(
     name="English Agent",
     instructions="You only speak English.",
+    model="gpt-4o-mini",
 )
 
 spanish_agent = Agent(
     name="Spanish Agent",
     instructions="You only speak Spanish.",
+    model="gpt-4o-mini",
 )
 
 
@@ -20,7 +22,8 @@ def transfer_to_spanish_agent():
 
 english_agent.functions.append(transfer_to_spanish_agent)
 
-messages = [{"role": "user", "content": "Hola. ¿Como estás?"}]
-response = client.run(agent=english_agent, messages=messages)
+# messages = [{"role": "user", "content": "Hola. ¿Como estás?"}]
+messages = [{"role": "user", "content": "hello, how are you?"}]
+response = client.run(agent=english_agent, messages=messages, debug=True)
 
 print(response.messages[-1]["content"])

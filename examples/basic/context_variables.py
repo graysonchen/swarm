@@ -17,6 +17,7 @@ def print_account_details(context_variables: dict):
 
 agent = Agent(
     name="Agent",
+    model="gpt-4o-mini",
     instructions=instructions,
     functions=[print_account_details],
 )
@@ -34,5 +35,6 @@ response = client.run(
     messages=[{"role": "user", "content": "Print my account details!"}],
     agent=agent,
     context_variables=context_variables,
+    debug=True,
 )
 print(response.messages[-1]["content"])

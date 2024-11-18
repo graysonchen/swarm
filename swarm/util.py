@@ -73,6 +73,8 @@ def function_to_json(func) -> dict:
         if param.default == inspect._empty
     ]
 
+    debug_print(True, f"function_to_json....parameters: ", parameters)
+
     return {
         "type": "function",
         "function": {
